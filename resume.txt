@@ -1,0 +1,135 @@
+// components/Footer.js
+import React from 'react';
+import { Box, Typography, Link } from '@mui/material';
+
+const Footer = () => (
+  <Box component="footer" sx={{ bgcolor: 'grey.900', color: 'white', py: 4, mt: 'auto' }}>
+    <Box sx={{ textAlign: 'center' }}>
+      <Typography variant="body1">© 2025 Rajendran N</Typography>
+      <Box sx={{ mt: 2 }}>
+        <Link href="https://linkedin.com/in/rajendrannsmart" target="_blank" rel="noopener" color="inherit" sx={{ mx: 2, textDecoration: 'underline' }}>
+          LinkedIn
+        </Link>
+        <Link href="mailto:nrajendran497@gmail.com" target="_blank" rel="noopener" color="inherit" sx={{ mx: 2, textDecoration: 'underline' }}>
+          Email
+        </Link>
+      </Box>
+    </Box>
+  </Box>
+);
+
+export default Footer;// components/Header.js
+import React from 'react';
+import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
+import { Link } from 'react-router-dom';
+
+const Header = () => {
+  const navLinks = [
+    { label: 'Home', to: '/' },
+    { label: 'About', to: '/about' },
+    { label: 'Resume', to: '/resume' },
+    { label: 'Projects', to: '/projects' },
+    { label: 'Contact', to: '/contact' },
+  ];
+
+  return (
+    <AppBar position="static" color="primary">
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          My Portfolio
+        </Typography>
+        <Box sx={{ display: 'flex' }}>
+          {navLinks.map((link) => (
+            <Button
+              key={link.to}
+              component={Link}
+              to={link.to}
+              color="inherit"
+              sx={{ ml: 2 }}
+            >
+              {link.label}
+            </Button>
+          ))}
+        </Box>
+      </Toolbar>
+    </AppBar>
+  );
+};
+
+export default Header;const About = () => (
+  <div className='p-4'>
+    <h2 className='text-2xl font-bold mb-4'>About Me</h2>
+    <p>I&apos;m a .NET Developer at Manappuram Finance with a background in QA and a passion for building internal enterprise systems.</p>
+  </div>
+);
+
+export default About;const Contact = () => (
+  <div className='p-4'>
+    <h2 className='text-2xl font-bold mb-4'>Contact</h2>
+    <p>Email: <a href='mailto:nrajendran497@gmail.com' className='text-blue-500'>nrajendran497@gmail.com</a></p>
+  </div>
+);
+
+export default Contact;const Home = () => (
+  <div className='text-center mt-10'>
+    <h1 className='text-4xl font-bold'>Hi, I&apos;m Rajendran N 👋</h1>
+    <p className='mt-4 text-lg text-gray-700'>.NET Developer passionate about enterprise applications and full-stack solutions.</p>
+  </div>
+);
+
+export default Home;const Projects = () => (
+  <div className='p-4'>
+    <h2 className='text-2xl font-bold mb-4'>Projects</h2>
+    <ul className='list-disc pl-6'>
+      <li>Employee Management System – ASP.NET MVC, ADO.NET, PL/SQL</li>
+      <li>Salary Component Module – Oracle PL/SQL</li>
+      <li>Authorization Workflows – Role-based systems</li>
+    </ul>
+  </div>
+);
+
+export default Projects;const Resume = () => (
+  <div className='p-4'>
+    <h2 className='text-2xl font-bold mb-4'>Resume</h2>
+    <ul className='list-disc pl-6'>
+      <li>.NET Developer at Manappuram Finance – May 2025 – Present</li>
+      <li>Software Tester – Jan 2023 – Apr 2025</li>
+      <li>Certified in Full Stack .NET and PL/SQL</li>
+    </ul>
+  </div>
+);
+
+export default Resume;import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './Pages/Home';
+import About from './Pages/About';
+import Resume from './Pages/Resume';
+import Projects from './Pages/Projects';
+import Contact from './Pages/Contact';
+
+function App() {
+  return (
+    <Router>
+      {/* Header - Navigation bar at the top */}
+      <Header />
+
+      {/* Main content area, styled with Tailwind classes */}
+      <div className='min-h-screen p-4'>
+        <Routes>
+          {/* Define routes for different pages */}
+          <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/resume' element={<Resume />} />
+          <Route path='/projects' element={<Projects />} />
+          <Route path='/contact' element={<Contact />} />
+        </Routes>
+      </div>
+
+      {/* Footer - displayed at the bottom */}
+      <Footer />
+    </Router>
+  );
+}
+
+export default App;
